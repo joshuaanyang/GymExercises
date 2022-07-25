@@ -29,7 +29,7 @@
     <div class="container">
 <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if exercise_list: %}
-    {% for exercise in exercise_list %}
+    {% for exer in exercise_list %}
 
 
 
@@ -38,15 +38,15 @@
     <div class="card h-100">
 
       <div class="card-body">
-        <h5 class="card-title">Exercise Name: {{exercise["name"]}}</h5>
-        <p class="card-text">Exercise Target: {{exercise["target"]}}</p>
-          <p class="card-text">Exercise BodyPart: {{exercise["bodyPart"]}}</p>
-          <p class="card-text">Exercise Equipment: {{exercise["equipment"]}}</p>
+        <h5 class="card-title">Exercise Name: {{exer["name"]}}</h5>
+        <p class="card-text">Exercise Target: {{exer["target"]}}</p>
+          <p class="card-text">Exercise BodyPart: {{exer["bodyPart"]}}</p>
+          <p class="card-text">Exercise Equipment: {{exer["equipment"]}}</p>
       </div>
       <div class="card-footer">
         <small class="text-muted">Gif Below</small>
       </div>
-        <img src=f"{{exercise['gifUrl']}}" class="card-img-bottom" alt="...">
+        <img src="{{exer['gifUrl']}}" class="card-img-bottom" alt="...">
     </div>
   </div>
 

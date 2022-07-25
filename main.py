@@ -47,11 +47,13 @@ class GymSearch(FlaskForm):
     submit = SubmitField("Search")
 
 
+# gym_list = gym_list[0]
+
 @app.route("/", methods=["GET", "POST"])
 def home():
 
     gymdata = GymLibrary.query.all()
-    ex_list = []
+
 
     # tasks = db.session.query(Task).all()
     # gymdata = [(task.to_dict()) for task in tasks]
@@ -68,19 +70,22 @@ def home():
 
             response = requests.request("GET", url, headers=headers)
 
-            ex_list = response.text
+            ex_list = response.json()[:6]
+            print(ex_list)
+            # gym_list.append(ex_list)
 
-            new_post = GymLibrary(
-                exercise=form.exc.data,
-            )
 
-            db.session.add(new_post)
-            db.session.commit()
-            return redirect(url_for('home'))
-    print(f"this is gymdata {gymdata}")
+            # new_post = GymLibrary(
+            #     exercise=ex_list
+            # )
+            #
+            # db.session.add(new_post)
+            # db.session.commit()
+            return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
+    # print(f"this is gymlist {gym_list}")
 
     # return render_template("index.html", tasks=task_list, form=form)
-    return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
+    return render_template("index.html", data=gymdata, form=form)
 
 
 
