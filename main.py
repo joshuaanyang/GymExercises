@@ -43,11 +43,11 @@ db.create_all()
 
 
 class GymSearch(FlaskForm):
-    name = StringField("Name")
-    exc = StringField("Search exercise here")
+    exc = StringField("Search exercise here", render_kw={'style': 'width: 17ch, height: 4ch '})
+    submit = SubmitField("Search")
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
 
     gymdata = GymLibrary.query.all()
@@ -57,13 +57,16 @@ def home():
     form = GymSearch()
     if request.method == "POST":
         if form.validate_on_submit():
-            new_post = GymLibrary(
-                name=form.name.data,
-                exercise=form.exc.data,
-            )
+            exercise = form.exc.data
+            print(exercise)
 
-            db.session.add(new_post)
-            db.session.commit()
+            # new_post = GymLibrary(
+            #     name=form.name.data,
+            #     exercise=form.exc.data,
+            # )
+            #
+            # db.session.add(new_post)
+            # db.session.commit()
             return redirect(url_for('home'))
 
     # return render_template("index.html", tasks=task_list, form=form)

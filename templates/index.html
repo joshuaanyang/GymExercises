@@ -1,6 +1,8 @@
 {% extends 'bootstrap/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% include "header.html" %}
+{% block content %}
 
 <body>
 
@@ -19,13 +21,11 @@
 
 
     <div class="container">
-        <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search exercise here" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-    </form>
+        {{ wtf.quick_form(form, button_map={"submit": "success"}, form_type="inline") }}
 
     </div>
 </section>
 
 </body>
-</html>
+
+{% endblock %}
