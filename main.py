@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from typing import Callable
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret_key"
@@ -43,7 +44,7 @@ db.create_all()
 
 
 class GymSearch(FlaskForm):
-    exc = StringField("Search exercise here", render_kw={'style': 'width: 17ch, height: 4ch '})
+    exc = StringField("Search exercise here", render_kw={"placeholder": "Search exercise here", 'style': 'width: 45ch, height: 4ch '})
     submit = SubmitField("Search")
 
 
@@ -51,6 +52,7 @@ class GymSearch(FlaskForm):
 def home():
 
     gymdata = GymLibrary.query.all()
+    ex_list=[]
 
     # tasks = db.session.query(Task).all()
     # gymdata = [(task.to_dict()) for task in tasks]
@@ -58,7 +60,16 @@ def home():
     if request.method == "POST":
         if form.validate_on_submit():
             exercise = form.exc.data
-            print(exercise)
+
+            headers = {
+                "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
+                "X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
+            }
+            url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
+
+            response = requests.request("GET", url, headers=headers)
+
+            ex_list = response.text
 
             # new_post = GymLibrary(
             #     name=form.name.data,
@@ -70,7 +81,7 @@ def home():
             return redirect(url_for('home'))
 
     # return render_template("index.html", tasks=task_list, form=form)
-    return render_template("index.html", data=gymdata, form=form)
+    return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
 
 
 
@@ -108,16 +119,6 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-# import requests
-#
-# headers = {
-# 	"X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
-# 	"X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
-# }
-#
-# name = "barbell squat"
-# url = f"https://exercisedb.p.rapidapi.com/exercises/name/{name}"
-#
-# response = requests.request("GET", url, headers=headers, params=name)
-#
-# print(response.text)
+
+
+

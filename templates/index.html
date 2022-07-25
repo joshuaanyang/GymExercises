@@ -2,6 +2,7 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% include "header.html" %}
+
 {% block content %}
 
 <body>
@@ -22,6 +23,57 @@
 
     <div class="container">
         {{ wtf.quick_form(form, button_map={"submit": "success"}, form_type="inline") }}
+
+    </div>
+
+    <div class="container">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if exercise_list: %}
+    {% for exercise in exercise_list %}
+
+
+
+
+  <div class="col">
+    <div class="card h-100">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Exercise Name: {{exercise["name"]}}</h5>
+        <p class="card-text"></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Gif Below</small>
+      </div>
+    </div>
+  </div>
+
+    {% endfor %}
+    {% endif %}
+
+</div>
+
+
+
+
+
+
+<!--<div class="card" id="demo">-->
+<!--  <div class="card-body">-->
+<!--    <h5 class="card-title">Due Date: {{task["due_date"]}}  Time Due: {{task["due_time"]}} </h5>-->
+<!--    <p class="card-text">Task: {{task["task"]}} </p>-->
+<!--      <div class="row">-->
+<!--  <div class="col-4">-->
+<!--    <a onclick="myFunction()" class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i></a>-->
+<!--  </div>-->
+<!--          <div class="col-4">-->
+<!--    <a href="{{url_for('delete_post', post_id=task.id) }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>-->
+<!--  </div>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+    {% endfor %}
+    {% endif %}
 
     </div>
 </section>
