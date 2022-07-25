@@ -70,7 +70,7 @@ def home():
 
             response = requests.request("GET", url, headers=headers)
 
-            ex_list = response.json()[:6]
+            ex_list = response.json()
             print(ex_list)
             # gym_list.append(ex_list)
 
