@@ -28,10 +28,7 @@ db = MySQLAlchemy(app)
 class GymLibrary(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), unique=True, nullable=False)
-    # img_url = db.Column(db.String(500), nullable=False)
-    # synopsis = db.Column(db.String(), nullable=False)
-    # author = db.Column(db.String(), nullable=False)
-    # rating = db.Column(db.String(250), nullable=False)
+    exercise = db.Column(db.String(250), unique=True, nullable=False)
 
     def to_dict(self):
         dictionary = {}
@@ -44,21 +41,38 @@ class GymLibrary(db.Model):
 
 db.create_all()
 
-class BookForm(FlaskForm):
-    name = StringField("Title")
-    img = StringField("Image Url")
-    synop = StringField("My Synopsis")
-    auth = StringField("Author")
-    rating = StringField("My Rating")
-    submit = SubmitField("Add Book To Library")
+
+class GymSearch(FlaskForm):
+    name = StringField("Name")
+    exc = StringField("Search exercise here")
 
 
 @app.route("/")
 def home():
 
-    # books = Library.query.all()
-    return render_template("index.html")
-    # return render_template("index.html", all_books=books)
+    gymdata = GymLibrary.query.all()
+
+    # tasks = db.session.query(Task).all()
+    # gymdata = [(task.to_dict()) for task in tasks]
+    form = GymSearch()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            new_post = GymLibrary(
+                name=form.name.data,
+                exercise=form.exc.data,
+            )
+
+            db.session.add(new_post)
+            db.session.commit()
+            return redirect(url_for('home'))
+
+    # return render_template("index.html", tasks=task_list, form=form)
+    return render_template("index.html", data=gymdata, form=form)
+
+
+
+
+
 
 
 # @app.route("/add_book", methods=["GET", "POST"])
