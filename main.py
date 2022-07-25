@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from typing import Callable
@@ -28,8 +28,7 @@ db = MySQLAlchemy(app)
 ##Library TABLE Configuration
 class GymLibrary(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(250), unique=True, nullable=False)
-    exercise = db.Column(db.String(250), unique=True, nullable=False)
+    exercise = db.Column(db.String(), unique=True, nullable=False)
 
     def to_dict(self):
         dictionary = {}
@@ -52,7 +51,7 @@ class GymSearch(FlaskForm):
 def home():
 
     gymdata = GymLibrary.query.all()
-    ex_list=[]
+    ex_list = []
 
     # tasks = db.session.query(Task).all()
     # gymdata = [(task.to_dict()) for task in tasks]
@@ -71,14 +70,14 @@ def home():
 
             ex_list = response.text
 
-            # new_post = GymLibrary(
-            #     name=form.name.data,
-            #     exercise=form.exc.data,
-            # )
-            #
-            # db.session.add(new_post)
-            # db.session.commit()
+            new_post = GymLibrary(
+                exercise=form.exc.data,
+            )
+
+            db.session.add(new_post)
+            db.session.commit()
             return redirect(url_for('home'))
+    print(f"this is gymdata {gymdata}")
 
     # return render_template("index.html", tasks=task_list, form=form)
     return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)

@@ -36,14 +36,17 @@
 
   <div class="col">
     <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
+
       <div class="card-body">
         <h5 class="card-title">Exercise Name: {{exercise["name"]}}</h5>
-        <p class="card-text"></p>
+        <p class="card-text">Exercise Target: {{exercise["target"]}}</p>
+          <p class="card-text">Exercise BodyPart: {{exercise["bodyPart"]}}</p>
+          <p class="card-text">Exercise Equipment: {{exercise["equipment"]}}</p>
       </div>
       <div class="card-footer">
         <small class="text-muted">Gif Below</small>
       </div>
+        <img src=f"{{exercise['gifUrl']}}" class="card-img-bottom" alt="...">
     </div>
   </div>
 
@@ -52,28 +55,6 @@
 
 </div>
 
-
-
-
-
-
-<!--<div class="card" id="demo">-->
-<!--  <div class="card-body">-->
-<!--    <h5 class="card-title">Due Date: {{task["due_date"]}}  Time Due: {{task["due_time"]}} </h5>-->
-<!--    <p class="card-text">Task: {{task["task"]}} </p>-->
-<!--      <div class="row">-->
-<!--  <div class="col-4">-->
-<!--    <a onclick="myFunction()" class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i></a>-->
-<!--  </div>-->
-<!--          <div class="col-4">-->
-<!--    <a href="{{url_for('delete_post', post_id=task.id) }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></a>-->
-<!--  </div>-->
-<!--      </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-    {% endfor %}
-    {% endif %}
 
     </div>
 </section>
