@@ -1,3 +1,95 @@
+from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
+from typing import Callable
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = "secret_key"
+Bootstrap(app)
+
+##Connect to Database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+class MySQLAlchemy(SQLAlchemy):
+    Column: Callable
+    String: Callable
+    Boolean: Callable
+    Integer: Callable
+
+
+db = MySQLAlchemy(app)
+
+
+##Library TABLE Configuration
+class Library(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250), unique=True, nullable=False)
+    img_url = db.Column(db.String(500), nullable=False)
+    synopsis = db.Column(db.String(), nullable=False)
+    author = db.Column(db.String(), nullable=False)
+    rating = db.Column(db.String(250), nullable=False)
+
+    def to_dict(self):
+        dictionary = {}
+
+        for column in self.__table__.columns:
+            dictionary[column.name] = getattr(self, column.name)
+
+        return dictionary
+
+
+db.create_all()
+
+class BookForm(FlaskForm):
+    name = StringField("Title")
+    img = StringField("Image Url")
+    synop = StringField("My Synopsis")
+    auth = StringField("Author")
+    rating = StringField("My Rating")
+    submit = SubmitField("Add Book To Library")
+
+
+@app.route("/")
+def home():
+
+    books = Library.query.all()
+    return render_template("index.html", all_books=books)
+
+
+@app.route("/add_book", methods=["GET", "POST"])
+def add_book():
+    form = BookForm()
+    if form.validate_on_submit():
+        new_book = Library(
+            name=form.name.data,
+            img_url=form.img.data,
+            synopsis=form.synop.data,
+            author=form.auth.data,
+            rating=form.rating.data
+        )
+        db.session.add(new_book)
+        db.session.commit()
+
+        return redirect(url_for('home'))
+    return render_template("add_book.html", form=form)
+
+
+@app.route("/delete/<int:post_id>", methods=["POST", "GET"])
+def delete_post(post_id):
+    post_to_delete = Library.query.get(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 # import requests
 #
 # headers = {
