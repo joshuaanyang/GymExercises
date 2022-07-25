@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = "secret_key"
 Bootstrap(app)
 
 ##Connect to Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gym.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -25,13 +25,13 @@ db = MySQLAlchemy(app)
 
 
 ##Library TABLE Configuration
-class Library(db.Model):
+class GymLibrary(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), unique=True, nullable=False)
-    img_url = db.Column(db.String(500), nullable=False)
-    synopsis = db.Column(db.String(), nullable=False)
-    author = db.Column(db.String(), nullable=False)
-    rating = db.Column(db.String(250), nullable=False)
+    # img_url = db.Column(db.String(500), nullable=False)
+    # synopsis = db.Column(db.String(), nullable=False)
+    # author = db.Column(db.String(), nullable=False)
+    # rating = db.Column(db.String(250), nullable=False)
 
     def to_dict(self):
         dictionary = {}
@@ -56,34 +56,35 @@ class BookForm(FlaskForm):
 @app.route("/")
 def home():
 
-    books = Library.query.all()
-    return render_template("index.html", all_books=books)
+    # books = Library.query.all()
+    return render_template("index.html")
+    # return render_template("index.html", all_books=books)
 
 
-@app.route("/add_book", methods=["GET", "POST"])
-def add_book():
-    form = BookForm()
-    if form.validate_on_submit():
-        new_book = Library(
-            name=form.name.data,
-            img_url=form.img.data,
-            synopsis=form.synop.data,
-            author=form.auth.data,
-            rating=form.rating.data
-        )
-        db.session.add(new_book)
-        db.session.commit()
+# @app.route("/add_book", methods=["GET", "POST"])
+# def add_book():
+#     form = BookForm()
+#     if form.validate_on_submit():
+#         new_book = Library(
+#             name=form.name.data,
+#             img_url=form.img.data,
+#             synopsis=form.synop.data,
+#             author=form.auth.data,
+#             rating=form.rating.data
+#         )
+#         db.session.add(new_book)
+#         db.session.commit()
+#
+#         return redirect(url_for('home'))
+#     return render_template("add_book.html", form=form)
 
-        return redirect(url_for('home'))
-    return render_template("add_book.html", form=form)
 
-
-@app.route("/delete/<int:post_id>", methods=["POST", "GET"])
-def delete_post(post_id):
-    post_to_delete = Library.query.get(post_id)
-    db.session.delete(post_to_delete)
-    db.session.commit()
-    return redirect(url_for('home'))
+# @app.route("/delete/<int:post_id>", methods=["POST", "GET"])
+# def delete_post(post_id):
+#     post_to_delete = Library.query.get(post_id)
+#     db.session.delete(post_to_delete)
+#     db.session.commit()
+#     return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
