@@ -38,7 +38,6 @@ class GymLibrary(db.Model):
 
         return dictionary
 
-
 db.create_all()
 
 
@@ -53,7 +52,6 @@ class GymSearch(FlaskForm):
 def home():
 
     gymdata = GymLibrary.query.all()
-
 
     # tasks = db.session.query(Task).all()
     # gymdata = [(task.to_dict()) for task in tasks]
