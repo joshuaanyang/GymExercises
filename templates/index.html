@@ -13,21 +13,25 @@
     </div>
 
     <div class="container">
-        <p>
+        <p class="my-p">
             Type your exercise below
         </p>
     </div>
 
 
     <div class="container">
+        <div class="my-form-container">
 
         <form class="d-flex" action="{{url_for('home')}}" method="POST">
       <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
+            </div>
 
     </div>
 
+
+</section>
     <div class="container">
 <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if exercise_list: %}
@@ -57,7 +61,6 @@
 
 
     </div>
-</section>
 </body>
 
 

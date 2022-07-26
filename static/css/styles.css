@@ -2,7 +2,7 @@ body {
 font-family: 'Major Mono Display', monospace;
 font-family: 'Poppins', sans-serif;
 margin: 20px;
-font-size: 80px;
+
 }
 
 /* H1 Header Font Start */
@@ -22,21 +22,25 @@ font-size: 700;
   background-size: cover;
 }
 
+.my-form-container {
+width: 50%;
+}
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-  width: 100%;
-  height: 100vh;
+width: 100%;
+  height: 70vh;
   position: relative;
 }
+
 @media (min-width: 992px) {
   #hero {
     padding-left: 160px;
   }
 }
 #hero:before {
-
   position: absolute;
   bottom: 0;
   top: 0;
@@ -57,13 +61,14 @@ font-size: 700;
   font-size: 64px;
   }
 
-#hero p {
+#hero .my-p {
   color: #45505b;
   margin: 15px 0 0 0;
   font-size: 26px;
   font-family: "Poppins", sans-serif;
+  padding-bottom: 30px;
 }
-#hero p span {
+#hero .my-p span {
   color: #FF5722;
   letter-spacing: 1px;
 }
@@ -89,7 +94,7 @@ font-size: 700;
     font-size: 32px;
     line-height: 36px;
   }
-  #hero p {
+  #hero .my-p {
     margin-top: 10px;
     font-size: 20px;
     line-height: 24px;
