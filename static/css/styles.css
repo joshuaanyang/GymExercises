@@ -37,7 +37,13 @@ font-size: 12px;
 }
 
 .bend {
-border-radius: 25px;}
+border-radius: 25px;
+}
+
+.card-img-bottom {
+height: 120px;
+width: 120px;
+}
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
