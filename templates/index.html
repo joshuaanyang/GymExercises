@@ -42,10 +42,10 @@
     <div class="card h-100">
 
       <div class="card-body">
-        <h5 class="card-title">Exercise Name: {{exer["name"]}}</h5>
-        <p class="card-text">Exercise Target: {{exer["target"]}}</p>
-          <p class="card-text">Exercise BodyPart: {{exer["bodyPart"]}}</p>
-          <p class="card-text">Exercise Equipment: {{exer["equipment"]}}</p>
+          <h5 class="card-title"><strong>Exercise Name: {{exer["name"].title()}}</strong></h5>
+        <p class="card-text"><strong>Exercise Target:</strong> {{exer["target"]}}</p>
+          <p class="card-text"><strong>Exercise BodyPart:</strong> {{exer["bodyPart"]}}</p>
+          <p class="card-text"><strong>Exercise Equipment:</strong> {{exer["equipment"]}}</p>
       </div>
       <div class="card-footer">
         <small class="text-muted">Gif Below</small>
