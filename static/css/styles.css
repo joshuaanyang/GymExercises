@@ -29,6 +29,7 @@ width: 50%;
 .card-title {
 font-size: 14px;
 font-weight: 900;
+padding-bottom: 10px;
 }
 
 .card-text {
@@ -42,6 +43,7 @@ font-size: 12px;
 width: 100%;
   height: 70vh;
   position: relative;
+  background: #FCE2DB;
 }
 
 @media (min-width: 992px) {
@@ -108,6 +110,9 @@ width: 100%;
     font-size: 20px;
     line-height: 24px;
   }
+  .my-form-container {
+width: 100%;
+}
 }
 
 /*--------------------------------------------------------------
