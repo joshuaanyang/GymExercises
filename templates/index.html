@@ -5,7 +5,7 @@
 {% include "header.html" %}
 
 <body style="">
-<section id="hero">
+<section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <h1>
             Welcome to Josh.dev Gym Forms
@@ -13,14 +13,18 @@
     </div>
 
     <div class="container">
-        <h5>
+        <p>
             Type your exercise below
-        </h5>
+        </p>
     </div>
 
 
     <div class="container">
-        {{ wtf.quick_form(form, button_map={"submit": "success"}, form_type="inline") }}
+
+        <form class="d-flex" action="{{url_for('home')}}" method="POST">
+      <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
 
     </div>
 

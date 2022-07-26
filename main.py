@@ -42,7 +42,7 @@ db.create_all()
 
 
 class GymSearch(FlaskForm):
-    exc = StringField("Search exercise here", render_kw={"placeholder": "Search exercise here", 'style': 'width: 45ch, height: 4ch '})
+    exc = StringField("Search exercise here", render_kw={'style': 'width: 125ch, height: 4ch '})
     submit = SubmitField("Search")
 
 
@@ -57,29 +57,44 @@ def home():
     # gymdata = [(task.to_dict()) for task in tasks]
     form = GymSearch()
     if request.method == "POST":
-        if form.validate_on_submit():
-            exercise = form.exc.data
+        # exercise = form.exc.data
+        exercise = request.form.get('search')
+        print(exercise)
 
-            headers = {
-                "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
-                "X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
-            }
-            url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
+        headers = {
+            "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
+            "X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
+        }
+        url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
 
-            response = requests.request("GET", url, headers=headers)
+        response = requests.request("GET", url, headers=headers)
 
-            ex_list = response.json()
-            print(ex_list)
-            # gym_list.append(ex_list)
-
-
-            # new_post = GymLibrary(
-            #     exercise=ex_list
-            # )
-            #
-            # db.session.add(new_post)
-            # db.session.commit()
-            return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
+        ex_list = response.json()
+        print(ex_list)
+        return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
+        # if form.validate_on_submit():
+        #     exercise = form.exc.data
+        #
+        #     headers = {
+        #         "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
+        #         "X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
+        #     }
+        #     url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
+        #
+        #     response = requests.request("GET", url, headers=headers)
+        #
+        #     ex_list = response.json()
+        #     print(ex_list)
+        #     # gym_list.append(ex_list)
+        #
+        #
+        #     # new_post = GymLibrary(
+        #     #     exercise=ex_list
+        #     # )
+        #     #
+        #     # db.session.add(new_post)
+        #     # db.session.commit()
+        #     return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
     # print(f"this is gymlist {gym_list}")
 
     # return render_template("index.html", tasks=task_list, form=form)
@@ -122,5 +137,5 @@ if __name__ == '__main__':
 
 
 
-
+# {{ wtf.quick_form(form, button_map={"submit": "success"}, form_type="inline") }}
 

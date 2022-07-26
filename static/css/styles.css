@@ -36,7 +36,6 @@ font-size: 700;
   }
 }
 #hero:before {
-  content: "";
 
   position: absolute;
   bottom: 0;
@@ -50,7 +49,14 @@ font-size: 700;
   font-weight: 700;
   line-height: 56px;
   color: #45505b;
+  padding-bottom: 50px;
 }
+
+#hero h5 {
+  margin: 0;
+  font-size: 64px;
+  }
+
 #hero p {
   color: #45505b;
   margin: 15px 0 0 0;
