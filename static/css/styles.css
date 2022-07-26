@@ -5,7 +5,7 @@ font-family: 'Poppins', sans-serif !important;
 
 /* H1 Header Font Start */
 h1 {
-font-family: 'Cormorant SC', serif;
+font-family: 'Cormorant SC', serif !important;
 font-size: 700;
 }
 /* H1 Header Font End */
