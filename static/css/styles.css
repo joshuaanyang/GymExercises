@@ -26,10 +26,12 @@ font-size: 700;
 width: 50%;
 }
 
-
+.card-title {
+font-size: 14px;
+}
 
 .card-text {
-font-size: 10px;
+font-size: 12px;
 }
 
 /*--------------------------------------------------------------
