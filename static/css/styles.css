@@ -13,14 +13,6 @@ font-size: 700;
 /* H1 Header Font End */
 
 /* full page */
-.masthead {
-  margin-bottom: 50px;
-  background: no-repeat center center;
-  background-color: #868e96;
-  background-attachment: scroll;
-  position: relative;
-  background-size: cover;
-}
 
 .my-form-container {
 width: 50%;
@@ -45,8 +37,8 @@ height: 120px;
 width: 120px;
 }
 
-.empty-div {
-
+.card-body {
+background: #F5EDDC;
 }
 /*--------------------------------------------------------------
 # Hero Section
