@@ -46,8 +46,6 @@ class GymSearch(FlaskForm):
     submit = SubmitField("Search")
 
 
-# gym_list = gym_list[0]
-
 @app.route("/", methods=["GET", "POST"])
 def home():
 
