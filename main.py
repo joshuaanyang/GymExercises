@@ -51,8 +51,6 @@ def home():
 
     gymdata = GymLibrary.query.all()
 
-    # tasks = db.session.query(Task).all()
-    # gymdata = [(task.to_dict()) for task in tasks]
     form = GymSearch()
     if request.method == "POST":
         # exercise = form.exc.data
