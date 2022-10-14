@@ -44,3 +44,19 @@ body {
 }
 
 /* NavBar Styles End */
+
+/* Search container */
+.search-body{
+width: 100%;
+height: 250px;
+border: solid 1px black;
+align-items: center;
+
+}
+
+.search-title {
+
+  text-align: center;
+  
+}
+/* Search Container End */
