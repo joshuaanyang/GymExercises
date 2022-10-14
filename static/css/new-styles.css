@@ -115,7 +115,11 @@ border-left: 0;
 .test-run .card{
   margin-top: 10px;
   height: 180px;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
+}
+
+.tech-p{
+  margin-bottom: 0;
 }
 /* test run end */
