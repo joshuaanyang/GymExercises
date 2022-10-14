@@ -109,11 +109,14 @@ border-left: 0;
  align-items: center;
  justify-content: space-evenly;
     height: 200px;
-    border: solid 1px black;
+    border: solid 2px black;
+    /* border-bottom: 0; */
+    border-left: 0;
+    border-right: 0;
 }
 
 .test-run .card{
-  margin-top: 10px;
+  margin-top: 9px;
   height: 180px;
   padding: 10px;
   text-align: center;
