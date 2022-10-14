@@ -1,5 +1,6 @@
 *{
-  padding: ;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 
@@ -64,17 +65,24 @@ text-align: center;
   text-align: center;
 }
 
+.search-bar{
+  margin: auto;
+  padding: auto;
+}
+
 .search-bar form{
-  background-color: red;
-  width: 600px;
+  /* background-color: red; */
+  width: auto;
   height: 55px;
   display: flex;
   justify-content: center;
 }
 
 .search-bar form input{
-  flex: 1;
+  /* flex: 1; */
   border: solid 2px;
+  border-left: 0;
+  outline: none;
 }
 
 .search-bar form button{
@@ -84,4 +92,19 @@ border-left: 0;
   letter-spacing: 1px;
   cursor: pointer;
 }
+
+.search-bar form .fa-magnifying-glass{
+   align-self: center;
+   padding: 20px 20px;
+   height: 55px;
+   border: solid 2px;
+   border-right: 0;
+   /* vertical-align: bottom; */
+}
+
+/* @media (min-width: 99px) {
+  .search-bar form{
+    width: 300px;
+  }
+} */
 /* Search Container End */
