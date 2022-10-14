@@ -34,7 +34,7 @@ body {
 }
 
 .navigations ul, li, a {
-  list-style: none; 
+  list-style: none;
   text-decoration: none;
   color: black;
   text-transform: uppercase;
