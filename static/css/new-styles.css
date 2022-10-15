@@ -21,6 +21,7 @@ body {
 /* NavBar Styles */
 .my-container{
   padding-bottom: 20px;
+  border: solid 1px black;
 }
 
 .navigations{
@@ -126,3 +127,30 @@ border-left: 0;
   margin-bottom: 0;
 }
 /* test run end */
+
+/* login box */
+.my-login-container{
+  padding-bottom: 20px;
+  border: solid 1px black;
+  min-height: 500px;
+  align-items: center;
+  /* position: absolute; */
+}
+
+.login-text{
+  padding: 20px;
+  width: auto;
+}
+
+.box {
+  max-width: 400px;
+  padding: 50px;
+  height: 300px;
+  position: relative;
+  margin: 100px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* login box end */
