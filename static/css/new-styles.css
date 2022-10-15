@@ -140,6 +140,8 @@ border-left: 0;
 .login-text{
   padding: 20px;
   width: auto;
+  margin-top: 100px;
+  text-align: center;
 }
 
 .box {
@@ -147,7 +149,7 @@ border-left: 0;
   padding: 50px;
   height: 300px;
   position: relative;
-  margin: 100px auto;
+  margin: 00px auto;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
