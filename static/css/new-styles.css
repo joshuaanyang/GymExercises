@@ -39,8 +39,6 @@ body {
   gap: 30px;
 }
 
-
-
 .navigations ul, li, a {
   list-style: none;
   text-decoration: none;
@@ -51,9 +49,19 @@ body {
   transition: ease-in-out .4s;
 }
 
+/* new bootstrap nav */
+.navbar-light {
+  background-color:rgb(248, 240, 229) !important; 
+}
 .my-container .nav-link {
   color: black;
 }
+
+.my-nav-container{
+  border: solid 1px black;
+}
+
+/* new bootstrap nav end*/
 
 /* NavBar Styles End */
 
