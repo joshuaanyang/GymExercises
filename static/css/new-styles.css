@@ -25,11 +25,10 @@ body {
 }
 
 .navigations{
-
   display: flex;
   width: 100%;
   height: 80px;
-  border: solid 1px black;
+  /* border: solid 1px black; */
   align-items: center;
   justify-content: space-around;
   background-color:rgb(248, 240, 229); 
@@ -40,6 +39,8 @@ body {
   gap: 30px;
 }
 
+
+
 .navigations ul, li, a {
   list-style: none;
   text-decoration: none;
@@ -48,6 +49,10 @@ body {
   letter-spacing: 5px;
   font-size: 12px;
   transition: ease-in-out .4s;
+}
+
+.my-container .nav-link {
+  color: black;
 }
 
 /* NavBar Styles End */
