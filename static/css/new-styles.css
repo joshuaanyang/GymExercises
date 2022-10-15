@@ -131,7 +131,7 @@ border-left: 0;
 /* login box */
 .my-login-container{
   padding-bottom: 20px;
-  border: solid 1px black;
+  /* border: solid 1px black; */
   min-height: 500px;
   align-items: center;
   /* position: absolute; */
