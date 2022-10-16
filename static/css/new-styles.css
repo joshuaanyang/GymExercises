@@ -182,7 +182,7 @@ border-left: 0;
 
 /* footer */
 footer {
-  padding: 50px 0 65px;
+  padding: 20px 0;
 }
 
 footer .list-inline {
@@ -197,8 +197,16 @@ footer .copyright {
 }
 
 footer .my-footer-icon{
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   margin-top: 2px; 
+}
+
+footer .list-inline-item a:hover{
+  color:rgb(248, 240, 229) !important;
+}
+
+footer .fab:hover{
+  color:black !important;  
 }
 
 /* footer end */
