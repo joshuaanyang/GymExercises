@@ -91,10 +91,8 @@ def home():
         #     # db.session.add(new_post)
         #     # db.session.commit()
         #     return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
-    # print(f"this is gymlist {gym_list}")
 
-    # return render_template("index.html", tasks=task_list, form=form)
-    return render_template("index.html", data=gymdata, form=form)
+    return render_template("new-index.html", data=gymdata, form=form)
 
 
 
