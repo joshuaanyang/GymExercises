@@ -242,6 +242,6 @@ cursor: pointer;
 
 /* display card */
 .my-display-card .card{
-border: solid 1px black !important;
+border: solid 2px black !important;
 }
 /* display card end */
