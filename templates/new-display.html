@@ -57,6 +57,37 @@
 </div>
     </div>
 
+        <div class="container">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if exercise_list: %}
+    {% for exer in exercise_list %}
+
+
+  <div class="col">
+    <div class="card h-50">
+
+      <div class="card-body">
+          <h5 class="card-title"><strong>Exercise Name: {{exer["name"].title()}}</strong></h5>
+        <p class="card-text"><strong>Exercise Target: {{exer["target"]}}</strong> </p>
+          <p class="card-text"><strong>Exercise BodyPart: {{exer["bodyPart"]}}</strong>  </p>
+          <p class="card-text"><strong>Exercise Equipment: {{exer["equipment"]}}</strong> </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Gif Below</small>
+      </div>
+
+        <img src="{{exer['gifUrl']}}" class="card-img-bottom" alt="...">
+    </div>
+  </div>
+
+    {% endfor %}
+    {% endif %}
+
+</div>
+
+
+    </div>
+
 
 
     <footer>

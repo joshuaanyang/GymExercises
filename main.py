@@ -67,7 +67,7 @@ def home():
 
         ex_list = response.json()
         print(ex_list)
-        return render_template("new-display", data=gymdata, form=form, exercise_list=ex_list)
+        return render_template("new-display.html", data=gymdata, form=form, exercise_list=ex_list)
         # if form.validate_on_submit():
         #     exercise = form.exc.data
         #
