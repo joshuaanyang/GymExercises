@@ -239,3 +239,9 @@ text-decoration: underline;
 cursor: pointer;
 }
 /* popup end */
+
+/* display card */
+.my-display-card .card{
+border: solid 1px black !important;
+}
+/* display card end */

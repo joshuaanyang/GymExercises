@@ -34,7 +34,7 @@
           </nav>
                
     </div>
-
+<!--Popup box-->
     <div class="popup">
         <div class="popup-content">
             <h5>Hello!!!</h5>
@@ -43,7 +43,7 @@
             <span class="close">CLOSE</span>
         </div>
     </div>
-
+<!--Popup box End-->
     <div class="my-container">
 <div class="search-body">
     <p class="search-title"> Search for the "Proper" Gym Forms and Techniques</p>
@@ -57,14 +57,14 @@
 </div>
     </div>
 
-        <div class="container">
+        <div class="container my-display-card">
 <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if exercise_list: %}
     {% for exer in exercise_list %}
 
 
   <div class="col">
-    <div class="card h-50">
+    <div class="card h-30 ">
 
       <div class="card-body">
           <h5 class="card-title"><strong>Exercise Name: {{exer["name"].title()}}</strong></h5>
