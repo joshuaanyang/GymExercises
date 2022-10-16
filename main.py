@@ -54,6 +54,7 @@ def home():
     form = GymSearch()
     if request.method == "POST":
         # exercise = form.exc.data
+
         exercise = request.form.get('search')
         print(exercise)
 
