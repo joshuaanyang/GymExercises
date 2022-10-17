@@ -258,12 +258,14 @@ border: solid 2px black !important;
    width: auto;
    margin: 20px 200px 0 200px;
    background-color: rgb(248, 240, 229);
-   cursor: pointer;
+   /* cursor: pointer; */
 }
 
-.dairy-container:hover {
+/* .dairy-container:hover {
   background-color: bisque;
-}
+} */
 
-.dairy-button
+.dairy-button:hover{
+background-color: bisque;
+}
 /* Diary end */
