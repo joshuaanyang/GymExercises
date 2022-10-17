@@ -296,6 +296,24 @@ background-color: bisque;
   width: fit-content;
   text-align: center;
   margin: auto;
+  margin-bottom: 10px;
+}
+
+.diary-entry{
+margin-bottom: 20px;
+border-bottom: solid 1px black;
+}
+
+.d-submit{
+padding: 5px;
+background-color: rgb(248, 240, 229);
+
+}
+
+.diary-entry input{
+  border: none;
+  padding: 10px;
+  outline: none;
 }
 
 /* Diary Body end */
