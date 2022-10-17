@@ -256,7 +256,7 @@ border: solid 2px black !important;
    padding: 10px;
    height: 55px;
    width: auto;
-   margin: 20px 200px 0 200px;
+   margin-top: 20px ;
    background-color: rgb(248, 240, 229);
    /* cursor: pointer; */
 }
@@ -264,7 +264,10 @@ border: solid 2px black !important;
 /* .dairy-container:hover {
   background-color: bisque;
 } */
-
+.dairy-button{
+  padding: 20px 10px;
+  width: 200px;
+}
 .dairy-button:hover{
 background-color: bisque;
 }
