@@ -247,7 +247,7 @@ border: solid 2px black !important;
 }
 /* display card end */
 
-/* Diary */
+/* Diary button*/
 .dairy-container {
   border: solid 2px black;
   align-self: center;
@@ -271,4 +271,9 @@ border: solid 2px black !important;
 .dairy-button:hover{
 background-color: bisque;
 }
-/* Diary end */
+/* Diary button end */
+
+/* Dairy Page */
+
+
+/* Dairy Page */
