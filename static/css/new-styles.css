@@ -316,4 +316,8 @@ background-color: rgb(248, 240, 229);
   outline: none;
 }
 
+.diary-form{
+  align-items: flex-end;
+}
+
 /* Diary Body end */
