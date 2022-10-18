@@ -311,6 +311,7 @@ background-color: bisque;
 margin-bottom: 20px;
 /* border-bottom: solid 1px black; */
 width: 100%;
+
 }
 
 .d-submit{
@@ -333,6 +334,7 @@ width: 100%;
   display: grid;
   grid-template-columns: auto 5rem;
   justify-content: space-between;
+  padding-right: 0.2rem;
 }
 
 .form-wrapper form{
@@ -350,6 +352,7 @@ width: 100%;
   /* overscroll-behavior: normal; */
   overflow-y: scroll;
   max-height: 15rem;
+  padding-right: 0.2rem;
 }
 
 .diary-content-item-wrapper{
@@ -409,5 +412,23 @@ width: 100%;
 }
 }
 /* Diary media query end */
+/* diary scroll bar  */
+::-webkit-scrollbar{
+  width: 0.3rem;
+}
 
+::-webkit-scrollbar-track{
+  background-color: rgb(248, 240, 229);
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: grey;
+  border-radius: 100vw;
+  
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: black;
+}
 /* Diary Body end */
