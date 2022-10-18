@@ -305,6 +305,7 @@ background-color: bisque;
   text-align: center;
   margin: auto;
   margin-bottom: 10px;
+  background-color: rgb(248, 240, 229);
 }
 
 .diary-entry{
@@ -328,7 +329,6 @@ background-color: rgb(248, 240, 229);
 width: 100%;
 }
 
-/* nev styles */
 
 .form-wrapper{
   display: grid;
@@ -355,9 +355,15 @@ width: 100%;
   padding-right: 0.2rem;
 }
 
+.diary-month {
+  text-align: center;
+  letter-spacing: 5px;
+  margin-bottom: 2rem;
+}
+
 .diary-content-item-wrapper{
   display: grid;
-  grid-template-columns: 7rem auto 5rem;
+  grid-template-columns: 8.2rem auto 5rem;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
@@ -369,11 +375,6 @@ width: 100%;
   align-items: center;
 }
 
-.diary-month {
-  text-align: center;
-  letter-spacing: 5px;
-  margin-bottom: 2rem;
-}
 
 .diary-content-item p{
   margin-bottom: 0;
