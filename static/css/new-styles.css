@@ -301,7 +301,8 @@ background-color: bisque;
 
 .diary-entry{
 margin-bottom: 20px;
-border-bottom: solid 1px black;
+/* border-bottom: solid 1px black; */
+width: 100%;
 }
 
 .d-submit{
@@ -312,12 +313,67 @@ background-color: rgb(248, 240, 229);
 
 .diary-entry input{
   border: none;
+  border-bottom: solid 1px ;
   padding: 10px;
   outline: none;
+width: 80%;
 }
 
-.diary-form{
-  align-items: flex-end;
+/* nev styles */
+
+.form-wrapper{
+  display: flex;
+  justify-content: space-between;
 }
+
+.form-wrapper form{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.diary-content-item-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.diary-content-item-wrapper button{
+  padding: 5px;
+  background-color: rgb(248, 240, 229);
+  align-items: center;
+}
+
+.dairy-month {
+  text-align: center;
+  letter-spacing: 5px;
+}
+
+.diary-content-item p{
+  margin-bottom: 0;
+}
+
+.dairy-form label{
+  display: block;
+}
+
+/* Diary media query */
+@media only screen and (max-width: 425px) {
+  .dairy-page{
+    margin: 0;
+    margin-top: 10px;
+  }
+
+  .form-wrapper {
+    gap: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .form-wrapper {
+    gap: 0.5rem;
+  }
+}
+/* Dairy media query end */
 
 /* Diary Body end */
