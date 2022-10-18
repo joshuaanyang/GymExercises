@@ -216,7 +216,7 @@ footer .fab:hover{
 .popup {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   display: none;
   justify-content: center;
@@ -232,12 +232,20 @@ footer .fab:hover{
   padding: 10px 20px;
   border-radius: 5px;
   position: relative;
+  align-items: center;
   text-align: center;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .close{
 text-decoration: underline;
 cursor: pointer;
+}
+
+.col-style{
+  z-index: -1 !important;
 }
 /* popup end */
 
