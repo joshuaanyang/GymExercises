@@ -17,8 +17,8 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Josh's Gym Forms</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                menu <i class="fa-solid fa-bars nav-toggle"></i>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" screen-reader="menu">
+                <i class="fa-solid fa-bars nav-toggle"></i>
               </button>
               <div class="collapse navbar-collapse justify-content-end" id="navbarText">
                 <ul class="navbar-nav ">
@@ -40,14 +40,13 @@
     </div>
 
     <div class="container">
-        <div class="dairy-page">
+        <div class="diary-page">
             <div class="diary-title"><h5>EXERCISE JOURNAL</h5></div>
             <div class="diary-entry">
 
-            <!-- nev's edit -->
             <div class="form-wrapper">
                 <form class="diary-form">
-                    <label>TODAY'S ENTRY</label>
+                    <label>TODAY'S ENTRY:</label>
                     <input type="text" placeholder="E.g. pull-up, crunches" autofocus>
 
                     </form>
@@ -55,12 +54,24 @@
             </div>
                 
             </div>
+
             <div class="diary-content">
-                <div class="dairy-month">OCTOBER 2022</div>
+              <h3 class="diary-month">OCTOBER 2022</h3>
                 <div class="diary-content-item-wrapper"> 
-                    <div class="diary-content-item"><p><span>MONDAY:</span> pull-ups, crunches, back-rows </p></div>                
+                    <div class="diary-content-item"><h5>MONDAY:</h5></div>
+                    <div><p>pull-ups, crunches, back-rows,pull-ups, crunches, back-rows,pull-ups, crunches, back-rows </p></div>                
                 <button type="button">delete</button>
             </div>
+            <div class="diary-content-item-wrapper"> 
+              <div class="diary-content-item"><h5>TUESDAY:</h5></div>
+              <div class="diary-exercise"><p>pull-ups, crunches, back-rows,pull-ups, crunches, back-rows,pull-ups, crunches, back-rows </p></div>                
+          <button type="button">delete</button>
+      </div>
+      <div class="diary-content-item-wrapper"> 
+        <div class="diary-content-item"><p>WEDNESDEY:</p></div>
+        <div><p>pull-ups, crunches, back-rows,pull-ups, crunches, back-rows,pull-ups, crunches, back-rows </p></div>                
+    <button type="button">delete</button>
+</div>
         </div>
         </div>
     </div>

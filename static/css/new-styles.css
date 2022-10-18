@@ -248,7 +248,7 @@ border: solid 2px black !important;
 /* display card end */
 
 /* Diary button*/
-.dairy-container {
+.diary-container {
   border: solid 2px black;
   align-self: center;
   /* display: flex; */
@@ -261,20 +261,20 @@ border: solid 2px black !important;
    /* cursor: pointer; */
 }
 
-/* .dairy-container:hover {
+/* .diary-container:hover {
   background-color: bisque;
 } */
-.dairy-button{
+.diary-button{
   padding: 20px 10px;
   width: 200px;
 }
-.dairy-button:hover{
+.diary-button:hover{
 background-color: bisque;
 }
 /* Diary button end */
 
-/* Dairy Page */
-.dairy-page{
+/* Diary Page */
+.diary-page{
   border: solid 2px black;
   padding: 20px;
   margin: 10px 40px 0 40px;
@@ -284,9 +284,9 @@ background-color: bisque;
   /* scroll-behavior: smooth; */
 }
 
-/* Dairy Page */
+/* Diary Page */
 
-/* Dairy Body */
+/* Diary Body */
 
 .diary-title{
   border: solid 1px black;
@@ -316,26 +316,40 @@ background-color: rgb(248, 240, 229);
   border-bottom: solid 1px ;
   padding: 10px;
   outline: none;
-width: 80%;
+width: 100%;
 }
 
 /* nev styles */
 
 .form-wrapper{
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 5rem;
   justify-content: space-between;
 }
 
 .form-wrapper form{
-  display: flex;
+  /* display: flex; */
   align-items: center;
   width: 100%;
 }
 
+.diary-form{
+  display: grid;
+  grid-template-columns: 8rem auto;
+}
+
+.diary-content{
+  /* overscroll-behavior: normal; */
+  overflow-y: scroll;
+  max-height: 15rem;
+}
+
 .diary-content-item-wrapper{
-  display: flex;
+  display: grid;
+  grid-template-columns: 7rem auto 5rem;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .diary-content-item-wrapper button{
@@ -344,36 +358,48 @@ width: 80%;
   align-items: center;
 }
 
-.dairy-month {
+.diary-month {
   text-align: center;
   letter-spacing: 5px;
+  margin-bottom: 2rem;
 }
 
 .diary-content-item p{
   margin-bottom: 0;
 }
 
-.dairy-form label{
+
+.diary-form label{
   display: block;
+  white-space: nowrap;
 }
 
 /* Diary media query */
-@media only screen and (max-width: 425px) {
-  .dairy-page{
+/* Tablet & Mobile media below */
+@media only screen and (max-width: 768px) {
+  .diary-page{
     margin: 0;
     margin-top: 10px;
   }
 
   .form-wrapper {
     gap: 0.5rem;
+  } 
+  .diary-form label{
+    white-space: nowrap;
   }
 }
 
-@media only screen and (max-width: 800px) {
-  .form-wrapper {
-    gap: 0.5rem;
-  }
+
+/*this is from big mobile to the smallest screen*/
+@media only screen and (max-width: 414px) {
+.navbar-brand {
+  font-size: 1rem !important;
 }
-/* Dairy media query end */
+.diary-content-item-wrapper{
+  grid-template-columns: none;
+}
+}
+/* Diary media query end */
 
 /* Diary Body end */
