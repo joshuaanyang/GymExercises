@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
 import requests
 from flask import Flask, render_template, redirect, url_for, flash, abort
 from functools import wraps
-from flask_ckeditor import CKEditor
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -13,7 +10,7 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_gravatar import Gravatar
 from typing import Callable
-from forms import RegisterForm, CreatePostForm, LoginForm, CommentForm, ContactForm
+from forms import RegisterForm, LoginForm, ContactForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret_key"
@@ -34,11 +31,11 @@ class MySQLAlchemy(SQLAlchemy):
 
 db = MySQLAlchemy(app)
 
-# Login Manager and User Authentication
+## Login Manager and User Authentication
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# created a function wrapper that allowed me to make the user 1 to have admin controls
+## created a function wrapper that allowed me to make the user 1 to have admin controls
 def admin_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -55,7 +52,7 @@ def load_user(user_id):
 
 
 ##TABLES Configuration
-# Use relationship to connect the users to the journal database
+## Use relationship to connect the users to the journal database
 
 class GymJournal(db.Model):
     __tablename__ = "journal_posts"
@@ -80,7 +77,7 @@ class User(UserMixin, db.Model):
 
 db.create_all()
 
-# Search Form for the Gym Web App Version 1
+## Search Form for the Gym Web App Version 1
 # class GymSearch(FlaskForm):
 #     exc = StringField("Search exercise here", render_kw={'style': 'width: 125ch, height: 4ch '})
 #     submit = SubmitField("Search")
@@ -108,13 +105,84 @@ def home():
     return render_template("new-index.html")
 
 
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    register_form = RegisterForm()
+    if register_form.validate_on_submit():
+        if User.query.filter_by(email=register_form.email.data).first():
+            flash("You've signed up with that email already, try logging in instead.")
+            return redirect(url_for('login'))
+        else:
+            new_user = User(
+                name=register_form.name.data,
+                email=register_form.email.data,
+                password=generate_password_hash(method="pbkdf2:sha256", password=register_form.password.data, salt_length=8)
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user)
+            return redirect(url_for('get_all_posts', current_user=current_user))
+    return render_template("new-sign-up.html", form=register_form)
 
-# @app.route("/delete/<int:post_id>", methods=["POST", "GET"])
-# def delete_post(post_id):
-#     post_to_delete = Library.query.get(post_id)
-#     db.session.delete(post_to_delete)
-#     db.session.commit()
-#     return redirect(url_for('home'))
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    loginform = LoginForm()
+
+    if loginform.validate_on_submit():
+        email = loginform.email.data
+        password = loginform.password.data
+
+        if User.query.filter_by(email=email).first():
+            user = User.query.filter_by(email=email).first()
+        else:
+            flash("This email doesn't exist. Please check and try again.")
+            return redirect(url_for('login'))
+
+        if check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for('get_all_posts', current_user=current_user))
+        else:
+            flash("Incorrect Password. Please check and try again.")
+            return redirect(url_for('login'))
+    return render_template("new-login.html", form=loginform)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('get_all_posts'))
+
+
+@app.route("/journal/<int:post_id>", methods=["GET", "POST"])
+def show_post(post_id):
+    requested_post = GymJournal.query.get(post_id)
+
+    if request.method == "POST":
+        if current_user.is_authenticated:
+            today_entry = request.form.get('entry')
+            new_entry = GymJournal(
+                text=strip_invalid_html(today_entry),
+                comment_author=current_user,
+                parent_post=requested_post
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+
+        else:
+            flash("Register or Sign In to comment")
+            return redirect(url_for('login'))
+
+    return render_template("post.html", post=requested_post, current_user=current_user, form=comment_form)
+
+
+@app.route("/delete/<int:post_id>", methods=["POST", "GET"])
+def delete_post(post_id):
+    post_to_delete = GymJournal.query.get(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':

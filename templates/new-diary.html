@@ -47,7 +47,7 @@
             <div class="form-wrapper">
                 <form class="diary-form">
                     <label>TODAY'S ENTRY:</label>
-                    <input type="text" placeholder="E.g. pull-up, crunches" autofocus>
+                    <input type="text" name="entry" placeholder="E.g. pull-up, crunches" autofocus>
                 </form>
                     <button class="d-submit" type="submit"> enter</button>
             </div>
@@ -59,7 +59,7 @@
                 <div class="diary-content-item-wrapper"> 
                     <div class="diary-content-item"><h6>07 MONDAY:</h6></div>
                     <div><p>pull-ups, crunches, back-rows,pull-ups, crunches, back-rows,pull-ups, crunches, back-rows </p></div>                
-                <button type="button">delete</button>
+                <a type="button" href="{{url_for('delete_post', post_id=post.id) }}">delete</a>
             </div>
             <div class="diary-content-item-wrapper"> 
               <div class="diary-content-item"><h6>08 TUESDAY:</h6></div>
