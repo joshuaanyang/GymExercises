@@ -104,6 +104,7 @@ padding: 50px;
 .search-bar{
   margin: auto;
   padding: auto;
+
 }
 
 .search-bar form{
@@ -431,6 +432,42 @@ width: 100%;
 
 
 /*this is from big mobile to the smallest screen*/
+@media only screen and (max-width: 435px) {
+.search-bar{
+  margin-inline: 3px !important;
+  max-width: 100%;
+}
+.search-body{
+  padding: 50px 10px !important;
+}
+
+.search-bar form{
+width: 100%;
+/* padding: auto 3px; */
+}
+
+.search-bar input{
+  width: 100%;
+  position: relative !important;
+  /* padding: initial 4rem; */
+  padding-left: 2.5rem;
+  border-left: solid 2px !important;
+  /* border: 2px !important; */
+}
+.search-bar i{
+  position: absolute !important;
+  left: 2rem;
+  z-index: 1;
+  border: none !important;
+  padding: unset !important;
+  height: unset !important;
+}
+.search-bar button{
+  padding: unset !important;
+  width: 70%;
+}
+}
+
 @media only screen and (max-width: 414px) {
 .navbar-brand {
   font-size: 1rem !important;
@@ -438,10 +475,9 @@ width: 100%;
 .diary-content-item-wrapper{
   grid-template-columns: none;
 }
-/* .diary-page{
-  height: 500px;
-} */
-
+.search-bar{
+  min-width: 80%;
+}
 }
 
 @media only screen and (max-width: 361px) {
@@ -450,6 +486,9 @@ width: 100%;
   }
   .diary-content-item-wrapper{
     grid-template-columns: none;
+  }
+  .search-title{
+    font-size: 14px !important;
   }
   }
 
