@@ -1,16 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash, abort, request
 from flask_bootstrap import Bootstrap
 import requests
-from flask import Flask, render_template, redirect, url_for, flash, abort
-from functools import wraps
-from datetime import date
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
-from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-from flask_gravatar import Gravatar
+from datetime import date
 from typing import Callable
+from sqlalchemy.orm import relationship
 from forms import RegisterForm, LoginForm, ContactForm
+from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from functools import wraps
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret_key"
@@ -153,11 +152,11 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('get_all_posts'))
+    return redirect(url_for('home'))
 
 
 @app.route("/journal", methods=["GET", "POST"])
-def show_post():
+def show_journal():
     all_posts = GymJournal.query.all()
     print(f"All posts: {all_posts}")
 
@@ -183,7 +182,7 @@ def delete_post(post_id):
     post_to_delete = GymJournal.query.get(post_id)
     db.session.delete(post_to_delete)
     db.session.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('show_journal'))
 
 
 if __name__ == '__main__':
