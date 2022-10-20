@@ -31,14 +31,14 @@ class MySQLAlchemy(SQLAlchemy):
     Integer: Callable
     ForeignKey: Callable
 
-db = MySQLAlchemy(app)
 
+db = MySQLAlchemy(app)
 
 # Login Manager and User Authentication
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-
+# created a function wrapper that allowed me to make the user 1 to have admin controls
 def admin_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -55,6 +55,7 @@ def load_user(user_id):
 
 
 ##TABLES Configuration
+# Use relationship to connect the users to the journal database
 
 class GymJournal(db.Model):
     __tablename__ = "journal_posts"
@@ -63,12 +64,8 @@ class GymJournal(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
     author = relationship("User", back_populates="posts")
 
-    title = db.Column(db.String(250), unique=True, nullable=False)
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
-    img_url = db.Column(db.String(250), nullable=False)
-
-    comments = relationship("Comment", back_populates="parent_post")
 
 
 class User(UserMixin, db.Model):
@@ -78,19 +75,7 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(200))
     password = db.Column(db.String(200))
 
-    posts = relationship("BlogPost", back_populates="author")
-    comments = relationship("Comment", back_populates="comment_author")
-
-
-class Comment(db.Model):
-    __tablename__ = "comments"
-    id = db.Column(db.Integer, primary_key=True)
-    author_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
-    comment_author = relationship("User", back_populates="comments")
-
-    post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
-    parent_post = relationship("BlogPost", back_populates="comments")
-    text = db.Column(db.Text)
+    posts = relationship("GymJournal", back_populates="author")
 
 
 db.create_all()
@@ -103,7 +88,6 @@ class GymSearch(FlaskForm):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-
     gymdata = GymLibrary.query.all()
 
     form = GymSearch()
@@ -151,11 +135,6 @@ def home():
     return render_template("new-index.html", data=gymdata, form=form)
 
 
-
-
-
-
-
 # @app.route("/add_book", methods=["GET", "POST"])
 # def add_book():
 #     form = BookForm()
@@ -185,7 +164,4 @@ def home():
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-
 # {{ wtf.quick_form(form, button_map={"submit": "success"}, form_type="inline") }}
-
