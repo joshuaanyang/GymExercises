@@ -17,6 +17,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Take Me in!")
 
 
+# might add a contact form
 class ContactForm(FlaskForm):
     name = StringField("Name")
     email = StringField("Email Address")

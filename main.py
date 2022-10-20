@@ -80,22 +80,18 @@ class User(UserMixin, db.Model):
 
 db.create_all()
 
-
-class GymSearch(FlaskForm):
-    exc = StringField("Search exercise here", render_kw={'style': 'width: 125ch, height: 4ch '})
-    submit = SubmitField("Search")
+# Search Form for the Gym Web App Version 1
+# class GymSearch(FlaskForm):
+#     exc = StringField("Search exercise here", render_kw={'style': 'width: 125ch, height: 4ch '})
+#     submit = SubmitField("Search")
 
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    gymdata = GymLibrary.query.all()
 
-    form = GymSearch()
     if request.method == "POST":
-        # exercise = form.exc.data
 
         exercise = request.form.get('search')
-        print(exercise)
 
         headers = {
             "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
@@ -105,52 +101,12 @@ def home():
 
         response = requests.request("GET", url, headers=headers)
 
-        ex_list = response.json()
-        print(ex_list)
-        return render_template("new-display.html", data=gymdata, form=form, exercise_list=ex_list)
-        # if form.validate_on_submit():
-        #     exercise = form.exc.data
-        #
-        #     headers = {
-        #         "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
-        #         "X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
-        #     }
-        #     url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
-        #
-        #     response = requests.request("GET", url, headers=headers)
-        #
-        #     ex_list = response.json()
-        #     print(ex_list)
-        #     # gym_list.append(ex_list)
-        #
-        #
-        #     # new_post = GymLibrary(
-        #     #     exercise=ex_list
-        #     # )
-        #     #
-        #     # db.session.add(new_post)
-        #     # db.session.commit()
-        #     return render_template("index.html", data=gymdata, form=form, exercise_list=ex_list)
+        ex_list = response.json()  # Did not store the search json in a database because it would be repopulated often
+        # might add that functionality in a new update
+        return render_template("new-display.html", exercise_list=ex_list)
 
-    return render_template("new-index.html", data=gymdata, form=form)
+    return render_template("new-index.html")
 
-
-# @app.route("/add_book", methods=["GET", "POST"])
-# def add_book():
-#     form = BookForm()
-#     if form.validate_on_submit():
-#         new_book = Library(
-#             name=form.name.data,
-#             img_url=form.img.data,
-#             synopsis=form.synop.data,
-#             author=form.auth.data,
-#             rating=form.rating.data
-#         )
-#         db.session.add(new_book)
-#         db.session.commit()
-#
-#         return redirect(url_for('home'))
-#     return render_template("add_book.html", form=form)
 
 
 # @app.route("/delete/<int:post_id>", methods=["POST", "GET"])
@@ -164,4 +120,3 @@ def home():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# {{ wtf.quick_form(form, button_map={"submit": "success"}, form_type="inline") }}
