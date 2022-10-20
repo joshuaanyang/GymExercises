@@ -1,10 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
-from typing import Callable
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 import requests
+from flask import Flask, render_template, redirect, url_for, flash, abort
+from functools import wraps
+from flask_ckeditor import CKEditor
+from datetime import date
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from flask_gravatar import Gravatar
+from typing import Callable
+from forms import RegisterForm, CreatePostForm, LoginForm, CommentForm, ContactForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret_key"
@@ -18,25 +27,71 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 class MySQLAlchemy(SQLAlchemy):
     Column: Callable
     String: Callable
-    Boolean: Callable
+    Text: Callable
     Integer: Callable
-
+    ForeignKey: Callable
 
 db = MySQLAlchemy(app)
 
 
-##Library TABLE Configuration
-class GymLibrary(db.Model):
+# Login Manager and User Authentication
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+
+def admin_only(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated or current_user.id != 1:
+            return abort(403)
+        return f(*args, **kwargs)
+
+    return decorated_function
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+
+##TABLES Configuration
+
+class GymJournal(db.Model):
+    __tablename__ = "journal_posts"
     id = db.Column(db.Integer, primary_key=True)
-    exercise = db.Column(db.String(), unique=True, nullable=False)
 
-    def to_dict(self):
-        dictionary = {}
+    author_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
+    author = relationship("User", back_populates="posts")
 
-        for column in self.__table__.columns:
-            dictionary[column.name] = getattr(self, column.name)
+    title = db.Column(db.String(250), unique=True, nullable=False)
+    date = db.Column(db.String(250), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    img_url = db.Column(db.String(250), nullable=False)
 
-        return dictionary
+    comments = relationship("Comment", back_populates="parent_post")
+
+
+class User(UserMixin, db.Model):
+    __tablename__ = "user_details"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(200), unique=True)
+    name = db.Column(db.String(200))
+    password = db.Column(db.String(200))
+
+    posts = relationship("BlogPost", back_populates="author")
+    comments = relationship("Comment", back_populates="comment_author")
+
+
+class Comment(db.Model):
+    __tablename__ = "comments"
+    id = db.Column(db.Integer, primary_key=True)
+    author_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
+    comment_author = relationship("User", back_populates="comments")
+
+    post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
+    parent_post = relationship("BlogPost", back_populates="comments")
+    text = db.Column(db.Text)
+
 
 db.create_all()
 
