@@ -155,17 +155,16 @@ def logout():
     return redirect(url_for('get_all_posts'))
 
 
-@app.route("/journal/<int:post_id>", methods=["GET", "POST"])
-def show_post(post_id):
+@app.route("/journal", methods=["GET", "POST"])
+def show_post():
     requested_post = GymJournal.query.get(post_id)
 
     if request.method == "POST":
         if current_user.is_authenticated:
             today_entry = request.form.get('entry')
             new_entry = GymJournal(
-                text=strip_invalid_html(today_entry),
-                comment_author=current_user,
-                parent_post=requested_post
+                date = date.today().strftime("%B %d, %Y"),
+                body = today_entry
             )
             db.session.add(new_comment)
             db.session.commit()
