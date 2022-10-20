@@ -35,6 +35,7 @@ db = MySQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 ## created a function wrapper that allowed me to make the user 1 to have admin controls
 def admin_only(f):
     @wraps(f)
@@ -77,6 +78,7 @@ class User(UserMixin, db.Model):
 
 db.create_all()
 
+
 ## Search Form for the Gym Web App Version 1
 # class GymSearch(FlaskForm):
 #     exc = StringField("Search exercise here", render_kw={'style': 'width: 125ch, height: 4ch '})
@@ -85,9 +87,7 @@ db.create_all()
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-
     if request.method == "POST":
-
         exercise = request.form.get('search')
 
         headers = {
@@ -116,7 +116,8 @@ def register():
             new_user = User(
                 name=register_form.name.data,
                 email=register_form.email.data,
-                password=generate_password_hash(method="pbkdf2:sha256", password=register_form.password.data, salt_length=8)
+                password=generate_password_hash(method="pbkdf2:sha256", password=register_form.password.data,
+                                                salt_length=8)
             )
             db.session.add(new_user)
             db.session.commit()
@@ -157,23 +158,24 @@ def logout():
 
 @app.route("/journal", methods=["GET", "POST"])
 def show_post():
-    requested_post = GymJournal.query.get(post_id)
+    all_posts = GymJournal.query.all()
+    print(f"All posts: {all_posts}")
 
     if request.method == "POST":
         if current_user.is_authenticated:
             today_entry = request.form.get('entry')
             new_entry = GymJournal(
-                date = date.today().strftime("%B %d, %Y"),
-                body = today_entry
+                date=date.today().strftime("%B %Y,%d %A"),  # formatted the day in October 2022, 20 Thursday - easier to call
+                body=today_entry
             )
-            db.session.add(new_comment)
+            db.session.add(new_entry)
             db.session.commit()
 
         else:
             flash("Register or Sign In to comment")
             return redirect(url_for('login'))
 
-    return render_template("post.html", post=requested_post, current_user=current_user, form=comment_form)
+    return render_template("new-diary.html", post=all_posts, current_user=current_user)
 
 
 @app.route("/delete/<int:post_id>", methods=["POST", "GET"])
@@ -186,4 +188,3 @@ def delete_post(post_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
