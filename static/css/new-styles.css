@@ -141,8 +141,8 @@ border-left: 0;
 
 /* Search Container End */
 
-/* test run */
-.test-run{
+/* card-display */
+.card-display{
  align-items: center;
  justify-content: space-evenly;
     height: 200px;
@@ -152,17 +152,26 @@ border-left: 0;
     border-right: 0;
 }
 
-.test-run .card{
+.col-style{
+  z-index: -1 !important;
+}
+
+.card-display .card{
   margin-top: 9px;
   height: 180px;
   padding: 10px;
   text-align: center;
 }
 
-.tech-p{
+.card-display-p{
   margin-bottom: 0;
 }
-/* test run end */
+
+.my-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+/* card-display end */
 
 /* login box */
 .my-login-container{
@@ -256,9 +265,7 @@ text-decoration: underline;
 cursor: pointer;
 }
 
-.col-style{
-  z-index: -1 !important;
-}
+
 /* popup end */
 
 /* display card */
