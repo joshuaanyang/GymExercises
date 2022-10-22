@@ -450,6 +450,7 @@ width: 100%;
     display: grid;
     grid-template-columns: 12rem 12rem 12rem;
     padding-bottom: 10px;
+    margin-inline: 3px;
   }
 }
 
