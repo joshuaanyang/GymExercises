@@ -453,7 +453,6 @@ width: 100%;
   }
 }
 
-
 /*this is from big mobile to the smallest screen*/
 @media only screen and (max-width: 435px) {
 .search-bar{
