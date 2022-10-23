@@ -370,7 +370,6 @@ width: 100%;
 }
 
 .diary-content{
-  /* overscroll-behavior: normal; */
   overflow-y: scroll;
   max-height: 15rem;
   padding-right: 0.2rem;
