@@ -171,6 +171,7 @@ def show_journal():
             )
             db.session.add(new_entry)
             db.session.commit()
+            return redirect(url_for('show_journal'))
 
         else:
             print("not logged in")

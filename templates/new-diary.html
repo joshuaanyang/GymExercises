@@ -22,25 +22,15 @@
             <div class="diary-content">
                  {% for post in posts %}
 
-              <h3 class="diary-month">{{post.month}}</h3>
                 <div class="diary-content-item-wrapper"> 
-                    <div class="diary-content-item"><h6>{{post.day}}:</h6></div>
+                    <div class="diary-content-item"><h6>{{post.month}}</h6>
+                        <h6>{{post.day}}:</h6></div>
                     <div><p>{{post.body}}</p></div>
                 <a type="button" href="{{url_for('delete_post', post_id=post.id) }}">delete</a>
             </div>
 
                 {% endfor %}
-<!--            <div class="diary-content-item-wrapper"> -->
-<!--              <div class="diary-content-item"><h6>08 TUESDAY:</h6></div>-->
-<!--              <div class="diary-exercise"><p>pull-ups, crunches, back-rows,pull-ups, crunches, back-rows,pull-ups, crunches, back-rows </p></div>                -->
-<!--          <button type="button">delete</button>-->
-<!--      </div>-->
-<!--      -->
-<!--      <div class="diary-content-item-wrapper"> -->
-<!--        <div class="diary-content-item"><h6>09 WEDNESDAY:</h6></div>-->
-<!--        <div class="diary-exercise"><p>pull-ups, crunches, back-rows,pull-ups, crunches, back-rows,pull-ups, crunches, back-rows </p></div>                -->
-<!--    <button type="button">delete</button>-->
-<!--</div>-->
+
         </div>
         </div>
     </div>
