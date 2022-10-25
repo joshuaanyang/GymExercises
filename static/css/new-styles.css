@@ -295,9 +295,13 @@ border: solid 2px black !important;
 .diary-button{
   padding: 20px 10px;
   width: 200px;
-}
+  border: solid 2px;
+  background-color: rgb(248, 240, 229);
+  text-decoration: none;
+  }
 .diary-button:hover{
 background-color: bisque;
+color: black;
 }
 /* Diary button end */
 
