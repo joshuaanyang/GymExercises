@@ -99,7 +99,7 @@ def home():
 
         ex_list = response.json()  # Did not store the search json in a database because it would be repopulated often
         # might add that functionality in a new update
-        return render_template("new-display.html", exercise_list=ex_list)
+        return render_template("new-display.html", exercise_list=ex_list, current_user=current_user)
 
     return render_template("new-index.html")
 
@@ -164,17 +164,18 @@ def show_journal():
         if current_user.is_authenticated:
             today_entry = request.form.get('entry')
             new_entry = GymJournal(
-                date=date.today().strftime("%B %Y,%d %A"),  # formatted the day in October 2022, 20 Thursday - easier to call
+                date=date.today().strftime("%B %Y,%d %A"),  # day format in "October 2022, 20 Thursday" - easier to call
                 body=today_entry
             )
             db.session.add(new_entry)
             db.session.commit()
 
         else:
+            print("not logged in")
             flash("Register or Sign In to comment")
             return redirect(url_for('login'))
 
-    return render_template("new-diary.html", post=all_posts, current_user=current_user)
+    return render_template("new-diary.html", posts=all_posts, current_user=current_user)
 
 
 @app.route("/delete/<int:post_id>", methods=["POST", "GET"])

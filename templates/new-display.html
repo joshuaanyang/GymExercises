@@ -11,9 +11,11 @@
         <button type="submit"> Search</button>
     </form>
 </div>
+<!--    {% if current_user.id: %}-->
 <div class="diary-container">
-    <a type="button"  class="diary-button" href="{{url_for('show_journal') }}">Take me to my Gym Diary </a>
+    <a type="button" class="diary-button" href="{{url_for('show_journal') }}">Take me to my Gym Diary </a>
  </div>
+<!--    {% endif %}-->
 </div>
     </div>
 
