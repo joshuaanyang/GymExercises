@@ -191,7 +191,6 @@ border-left: 0;
 }
 
 .box {
-z-index: -1;
   max-width: 400px;
   padding: 30px;
   height: 350px;
@@ -213,7 +212,12 @@ color: red !important;
 .btn-checkered {
 color: black;
 border: solid 2px black;
-background-color:rgb(248, 240, 229)
+background-color:rgb(248, 240, 229);
+margin-top: 15px
+}
+
+.btn-checkered:hover {
+background-color: bisque
 }
 
 /* login box end */

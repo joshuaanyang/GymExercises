@@ -61,7 +61,8 @@ class GymJournal(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
     author = relationship("User", back_populates="posts")
 
-    date = db.Column(db.String(250), nullable=False)
+    month = db.Column(db.String(250), nullable=False)
+    day = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
 
 
@@ -121,7 +122,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
-            return redirect(url_for('get_all_posts', current_user=current_user))
+            return redirect(url_for('home', current_user=current_user))
     return render_template("new-sign-up.html", form=register_form)
 
 
@@ -141,7 +142,7 @@ def login():
 
         if check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('get_all_posts', current_user=current_user))
+            return redirect(url_for('home', current_user=current_user))
         else:
             flash("Incorrect Password. Please check and try again.")
             return redirect(url_for('login'))
@@ -164,7 +165,8 @@ def show_journal():
         if current_user.is_authenticated:
             today_entry = request.form.get('entry')
             new_entry = GymJournal(
-                date=date.today().strftime("%B %Y,%d %A"),  # day format in "October 2022, 20 Thursday" - easier to call
+                month=date.today().strftime("%B %Y"),  ## month format in "October 2022, 20 Thursday" - easier to call
+                day=date.today().strftime("%d %A"),
                 body=today_entry
             )
             db.session.add(new_entry)

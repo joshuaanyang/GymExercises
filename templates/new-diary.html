@@ -22,10 +22,10 @@
             <div class="diary-content">
                  {% for post in posts %}
 
-              <h3 class="diary-month">OCTOBER 2022</h3>
+              <h3 class="diary-month">{{post.month}}</h3>
                 <div class="diary-content-item-wrapper"> 
-                    <div class="diary-content-item"><h6>07 MONDAY:</h6></div>
-                    <div><p>pull-ups, crunches, back-rows,pull-ups, crunches, back-rows,pull-ups, crunches, back-rows </p></div>                
+                    <div class="diary-content-item"><h6>{{post.day}}:</h6></div>
+                    <div><p>{{post.body}}</p></div>
                 <a type="button" href="{{url_for('delete_post', post_id=post.id) }}">delete</a>
             </div>
 
