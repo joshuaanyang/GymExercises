@@ -9,6 +9,7 @@ from forms import RegisterForm, LoginForm, ContactForm
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 
 app = Flask(__name__)
@@ -19,6 +20,9 @@ Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gym.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+#RAPID KEY
+rapid_key = os.environ.get("RAPID-KEY")
+rapid_host = os.environ.get("RAPID-HOST")
 
 class MySQLAlchemy(SQLAlchemy):
     Column: Callable
@@ -91,8 +95,8 @@ def home():
         exercise = request.form.get('search')
 
         headers = {
-            "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
-            "X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
+            "X-RapidAPI-Key": rapid_key,
+            "X-RapidAPI-Host": rapid_host
         }
         url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
 
