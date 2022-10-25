@@ -178,7 +178,7 @@ border-left: 0;
 .my-login-container{
   padding-bottom: 20px;
   /* border: solid 1px black; */
-  min-height: 500px;
+  min-height: 450px;
   align-items: center;
   /* position: absolute; */
 }
@@ -192,13 +192,27 @@ border-left: 0;
 
 .box {
   max-width: 400px;
-  padding: 50px;
+  padding: 30px;
   height: 350px;
   position: relative;
   margin: auto;
   background: white;
   border-radius: 5px;
   box-shadow: 1px 1px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+.flashed-message{
+color: red;
+}
+
+.help-block{
+color: red !important;
+}
+
+.btn-checkered {
+color: black;
+border: solid 2px black;
+background-color:rgb(248, 240, 229)
 }
 
 /* login box end */
