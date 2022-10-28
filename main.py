@@ -67,7 +67,6 @@ class GymJournal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     author_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
-    author = relationship("User", back_populates="posts")
 
     month = db.Column(db.String(250), nullable=False)
     day = db.Column(db.String(250), nullable=False)
@@ -80,8 +79,6 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(200), unique=True)
     name = db.Column(db.String(200))
     password = db.Column(db.String(200))
-
-    posts = relationship("GymJournal", back_populates="author")
 
 
 db.create_all()
@@ -176,6 +173,7 @@ def show_journal():
                 month=date.today().strftime("%B %Y"),  ## month format in "October 2022, 20 Thursday" - easier to call
                 day=date.today().strftime("%d %A"),
                 body=today_entry
+
             )
             db.session.add(new_entry)
             db.session.commit()
