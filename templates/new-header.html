@@ -35,7 +35,7 @@
                 {% endif %}
                 {% if current_user.id: %}
                 <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('show_journal', user_id=current_user.id) }}">Gym Journal</a>
+                <a class="nav-link" href="{{ url_for('show_journal') }}">Gym Journal</a>
               </li>
                 <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>

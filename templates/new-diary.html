@@ -17,6 +17,7 @@
 <!--            </div>-->
                 
             </div>
+            {% if posts != none %}
 
             <div class="diary-content">
                  {% for post in posts %}
@@ -31,6 +32,7 @@
                 {% endfor %}
 
         </div>
+            {% endif %}
         </div>
     </div>
 

@@ -66,7 +66,7 @@ class GymJournal(db.Model):
     __tablename__ = "journal_posts"
     id = db.Column(db.Integer, primary_key=True)
 
-    author_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
+    poster_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
 
     month = db.Column(db.String(250), nullable=False)
     day = db.Column(db.String(250), nullable=False)
@@ -79,6 +79,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(200), unique=True)
     name = db.Column(db.String(200))
     password = db.Column(db.String(200))
+
+    posts = relationship("GymJournal", backref="poster")
 
 
 db.create_all()
@@ -161,9 +163,11 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route("/journal/<int:user_id>", methods=["GET", "POST"])
-def show_journal(user_id):
-    all_posts = GymJournal.query.get(user_id)
+@app.route("/journal", methods=["GET", "POST"])
+def show_journal():
+    poster = current_user.id
+    all_posts = GymJournal.query.filter_by(poster_id=poster)
+    print(poster)
     print(f"All posts: {all_posts}")
 
     if request.method == "POST":
@@ -172,8 +176,8 @@ def show_journal(user_id):
             new_entry = GymJournal(
                 month=date.today().strftime("%B %Y"),  ## month format in "October 2022, 20 Thursday" - easier to call
                 day=date.today().strftime("%d %A"),
-                body=today_entry
-
+                body=today_entry,
+                poster_id=poster
             )
             db.session.add(new_entry)
             db.session.commit()
@@ -197,4 +201,6 @@ def delete_post(post_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
+
 
