@@ -99,8 +99,6 @@ def home():
             "X-RapidAPI-Host": rapid_host
         }
         url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
-        print(rapid_key)
-        print(rapid_host)
 
         response = requests.request("GET", url, headers=headers)
 
