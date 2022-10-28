@@ -442,10 +442,14 @@ display: grid;
   margin-bottom: 0;
 }
 
-
 .diary-form label{
   display: block;
   white-space: nowrap;
+}
+
+.search-exception{
+margin-left: 33%;
+margin-bottom: 15%
 }
 
 /* Diary media query */
@@ -468,6 +472,9 @@ display: grid;
     /* grid-template-columns: 12rem 12rem 12rem; */
     padding-bottom: 10px;
   }
+  .search-exception{
+margin-left: none;
+}
 }
 
 
