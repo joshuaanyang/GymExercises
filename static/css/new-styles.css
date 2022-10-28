@@ -124,10 +124,9 @@ padding: 50px;
 .search-bar form button{
   background-color: bisque;
   padding: 10px 50px;
-border-left: 0 !important;
+border-left: 0 ;
   letter-spacing: 5px;
   cursor: pointer;
-  border: solid 2px !important;
 }
 
 .search-bar form .fa-magnifying-glass{
