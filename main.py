@@ -20,12 +20,13 @@ Bootstrap(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gym.db'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # moving from mysql to heroku postgres
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL_1", "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #RAPID KEY
 rapid_key = os.environ.get("RAPID-KEY")
 rapid_host = os.environ.get("RAPID-HOST")
+
 
 class MySQLAlchemy(SQLAlchemy):
     Column: Callable
