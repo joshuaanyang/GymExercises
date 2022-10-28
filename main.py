@@ -95,10 +95,12 @@ def home():
         exercise = request.form.get('search')
 
         headers = {
-            "X-RapidAPI-Key": "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada",
+            "X-RapidAPI-Key": rapid_key,
             "X-RapidAPI-Host": rapid_host
         }
         url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
+        print(rapid_key)
+        print(rapid_host)
 
         response = requests.request("GET", url, headers=headers)
 
