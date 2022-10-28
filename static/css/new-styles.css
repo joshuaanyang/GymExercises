@@ -449,7 +449,7 @@ display: grid;
 
 .search-exception{
 margin-left: 33%;
-margin-bottom: 15%
+margin-bottom: 10%
 }
 
 /* Diary media query */
@@ -474,6 +474,7 @@ margin-bottom: 15%
   }
   .search-exception{
 margin-left: none;
+margin-bottom: 15%
 }
 }
 
