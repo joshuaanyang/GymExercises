@@ -472,8 +472,12 @@ margin-bottom: 2%
     /* grid-template-columns: 12rem 12rem 12rem; */
     padding-bottom: 10px;
   }
+
+}
+
+@media only screen and (max-width: 767px) {
   .search-exception{
-margin-left: none !important;
+margin-left: unset;
 margin-bottom: 15%
 }
 }
