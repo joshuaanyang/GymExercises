@@ -161,9 +161,9 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route("/journal", methods=["GET", "POST"])
-def show_journal():
-    all_posts = GymJournal.query.all()
+@app.route("/journal/<int:user_id>", methods=["GET", "POST"])
+def show_journal(user_id):
+    all_posts = GymJournal.query.get(user_id)
     print(f"All posts: {all_posts}")
 
     if request.method == "POST":
