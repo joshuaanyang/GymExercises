@@ -96,6 +96,7 @@ db.create_all()
 def home():
     if request.method == "POST":
         exercise = request.form.get('search')
+        print(exercise)
 
         headers = {
             "X-RapidAPI-Key": rapid_key,
