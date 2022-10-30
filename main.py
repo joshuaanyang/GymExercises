@@ -10,6 +10,7 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import time
 
 
 app = Flask(__name__)
@@ -104,6 +105,7 @@ def home():
         url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
 
         response = requests.request("GET", url, headers=headers)
+        time.sleep(2)
 
         ex_list = response.json()  # Did not store the search json in a database because it would be repopulated often
         # might add that functionality in a new update
