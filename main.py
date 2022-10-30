@@ -107,6 +107,7 @@ def home():
 
         ex_list = response.json()  # Did not store the search json in a database because it would be repopulated often
         # might add that functionality in a new update
+        print(ex_list)
         return render_template("new-display.html", exercise_list=ex_list, current_user=current_user)
 
     return render_template("new-index.html")
