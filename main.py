@@ -105,7 +105,7 @@ def home():
         url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
 
         response = requests.request("GET", url, headers=headers)
-        time.sleep(2)
+        time.sleep(2) #time delay
 
         ex_list = response.json()  # Did not store the search json in a database because it would be repopulated often
         # might add that functionality in a new update
