@@ -67,7 +67,7 @@ class GymJournal(db.Model):
     __tablename__ = "journal_posts"
     id = db.Column(db.Integer, primary_key=True)
 
-    poster_id = db.Column(db.Integer, db.ForeignKey("user_details.id"))
+    poster_id = db.Column(db.Integer, db.ForeignKey("user_details.id")) #link user db to journal db
 
     month = db.Column(db.String(250), nullable=False)
     day = db.Column(db.String(250), nullable=False)
@@ -176,7 +176,7 @@ def show_journal():
         if current_user.is_authenticated:
             today_entry = request.form.get('entry')
             new_entry = GymJournal(
-                month=date.today().strftime("%B %Y"),  ## month format in "October 2022, 20 Thursday" - easier to call
+                month=date.today().strftime("%B %Y"),  ## month format in "October 2022" - easier to call
                 day=date.today().strftime("%d %A"),
                 body=today_entry,
                 poster_id=poster
