@@ -10,7 +10,6 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
-import json
 
 
 app = Flask(__name__)
@@ -169,7 +168,6 @@ def logout():
 def show_journal():
     poster = current_user.id
     all_posts = GymJournal.query.filter_by(poster_id=poster)
-    print(poster)
     print(f"All posts: {all_posts}")
 
     if request.method == "POST":
