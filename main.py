@@ -19,6 +19,7 @@ Bootstrap(app)
 ##Connect to Database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gym.db'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # moving from mysql to heroku postgres
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL_1", "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
