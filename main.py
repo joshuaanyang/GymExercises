@@ -26,10 +26,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL_1", "sqlite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #RAPID KEY
-# rapid_key = os.environ.get("RAPID-KEY")
+rapid_key = os.environ.get("RAPID_KEY")
 rapid_host = "exercisedb.p.rapidapi.com"
 # rapid_host = os.environ.get("RAPID-HOST")
-rapid_key = "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada"
+
 
 
 class MySQLAlchemy(SQLAlchemy):
