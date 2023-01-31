@@ -1,5 +1,4 @@
 # GymExercises
 
-[![GitHub Super-Linter](https://github.com/joshuaanyang/GymExercises/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
-Open Web App for prospective body builders to see proper pexercise forms and techniques
+Built a web app to streamline workout routine execution by displaying gifs of exercises & target muscles. Includes a journal to track progress. Frontend: HTML, CSS, JS. Backend: Python Flask, database: MySQL. Hosted on AWS Elasticbeanstalk with continuous dev via CodePipeline & GitHub.
