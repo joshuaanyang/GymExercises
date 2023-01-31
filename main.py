@@ -31,7 +31,6 @@ rapid_host = "exercisedb.p.rapidapi.com"
 # rapid_host = os.environ.get("RAPID-HOST")
 
 
-
 class MySQLAlchemy(SQLAlchemy):
     Column: Callable
     String: Callable
