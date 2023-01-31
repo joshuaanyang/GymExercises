@@ -76,7 +76,6 @@ class GymJournal(db.Model):
     day = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
 
-
 class User(UserMixin, db.Model):
     __tablename__ = "user_details"
     id = db.Column(db.Integer, primary_key=True)
