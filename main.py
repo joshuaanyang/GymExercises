@@ -27,9 +27,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #RAPID KEY
 # rapid_key = os.environ.get("RAPID-KEY")
-rapid_key = "exercisedb.p.rapidapi.com"
+rapid_host = "exercisedb.p.rapidapi.com"
 # rapid_host = os.environ.get("RAPID-HOST")
-rapid_host = "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada"
+rapid_key = "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada"
 
 
 class MySQLAlchemy(SQLAlchemy):
@@ -100,7 +100,6 @@ db.create_all()
 def home():
     if request.method == "POST":
         exercise = request.form.get('search')
-        print(f"this is the {exercise}")
 
         headers = {
             "X-RapidAPI-Key": rapid_key,
@@ -109,7 +108,6 @@ def home():
         url = f"https://exercisedb.p.rapidapi.com/exercises/name/{exercise}"
 
         response = requests.request("GET", url, headers=headers)
-        print(f"this is the {response.status_code}")
 
         ex_list = response.json()  # Did not store the search json in a database because it would be repopulated often
         # might add that functionality in a new update
