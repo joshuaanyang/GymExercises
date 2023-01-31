@@ -10,6 +10,7 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
@@ -25,8 +26,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL_1", "sqlite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #RAPID KEY
-rapid_key = os.environ.get("RAPID-KEY")
-rapid_host = os.environ.get("RAPID-HOST")
+# rapid_key = os.environ.get("RAPID-KEY")
+rapid_key = "exercisedb.p.rapidapi.com"
+# rapid_host = os.environ.get("RAPID-HOST")
+rapid_host = "bb8f721820msh41917aa6a4592a7p1466e2jsn11d3b1b25ada"
 
 
 class MySQLAlchemy(SQLAlchemy):
